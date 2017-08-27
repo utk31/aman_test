@@ -76,7 +76,7 @@ public class HelloWorldService
     @GET
     @Path("/generator/{param}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Map<String, String>> getGenerator(@PathParam("param") String msg)
+    public List<List<Map<String, String>>> getGenerator(@PathParam("param") String msg)
     {
         return GenerateJson.values(msg);
     }

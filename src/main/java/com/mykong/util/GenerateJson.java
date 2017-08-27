@@ -21,9 +21,9 @@ import com.mykong.test.dbcon.DBManager;
 public class GenerateJson
 {
 
-    public static List<Map<String, String>> values(String pid) 
+    public static List<List<Map<String, String>>> values(String pid) 
     {
-        List<Map<String, String>> result = new ArrayList<>();
+        List<List<Map<String, String>>> result = new ArrayList<>();
         try{
             Connection con = DBManager.getConnection();
 
@@ -34,7 +34,9 @@ public class GenerateJson
                 String tableName = each.getColname();
                 String columnName = each.getColdata();
                 String data = each.getColtext();
-                initializeMap(pid,data,tableName,columnName,result);
+                List<Map<String, String>> tempResult = new ArrayList<>();
+                initializeMap(pid,data,tableName,columnName,tempResult);
+                result.add(tempResult);
             }
         }catch(Exception ex){
             ex.printStackTrace();
